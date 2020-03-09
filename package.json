@@ -1,0 +1,17 @@
+{
+  "name": "comic2-backend",
+  "version": "1.0.0",
+  "description": "Backend para consultar Mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "ls",
+    "start": "nodemon src/index.js"
+  },
+  "author": "Julio Alfaro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "mysql": "^2.18.1"
+  }
+}
