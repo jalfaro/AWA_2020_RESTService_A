@@ -36,4 +36,25 @@ module.exports = (app) => {
             res.send(req.body);
         });
     });
+    //Update un comic
+    app.put('/comic/:id', (req, res) => {
+        let schema = Joi.object({
+            nombre: Joi.string().required(),
+            editorial: Joi.string().required()
+        });
+        if (schema.validate(req.body).error) res.status(400).send("Error en los parametros enviados");
+        let query = `UPDATE comic SET nombre = '${req.body.nombre}', editorial = '${req.body.editorial}' WHERE id = ${req.params.id}`;
+        conn.query(query, (err, row, col) => {
+            if (err) res.status(500).send("Error en el query");
+            res.send('{"mensaje":"Actualizacion realizada"}');
+        }); 
+    });
+
+    app.delete('/comic/:id', (req, res) => {
+        let query = `DELETE FROM comic WHERE id = ${req.params.id}`;
+        conn.query(query, (err, row, col) => {
+            if (err) res.status(400).send("No se pudo borrar el comic");
+            res.send("Comic eliminado satisfactoriamente");
+        })
+    }) 
 }
